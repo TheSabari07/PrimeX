@@ -1,5 +1,5 @@
 import React from "react";
-import { FaUserPlus } from "react-icons/fa"; // Optional icon for added style
+import { FaUserPlus } from "react-icons/fa"; 
 
 const Register = () => {
   return (
