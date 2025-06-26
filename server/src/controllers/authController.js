@@ -1,8 +1,8 @@
-const User = require("../model/User");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+import User from "../model/User.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
-const register = async (req, res) => {
+export const register = async (req, res) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -16,15 +16,18 @@ const register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const user = await User.create({ username, email, password: hashedPassword });
-    res.status(201).json({ message: "User registered successfully", user: { id: user._id, username, email } });
+
+    res.status(201).json({ 
+      message: "User registered successfully", 
+      user: { id: user._id, username, email } 
+    });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
 
-const login = async (req, res) => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -45,11 +48,12 @@ const login = async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
-
-    res.json({ message: "Login successful", token, user: { id: user._id, username: user.username, email: user.email } });
+    res.json({ 
+      message: "Login successful", 
+      token, 
+      user: { id: user._id, username: user.username, email: user.email } 
+    });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
-
-module.exports = { register, login };
