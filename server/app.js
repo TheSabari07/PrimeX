@@ -14,6 +14,8 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
+
+
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
@@ -21,7 +23,7 @@ app.use("/api/auth", authRoutes);
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to MongoDB");
-    const port = process.env.PORT || 5000;
+    const port = process.env.PORT || 5002;
     app.listen(port, () => {
       console.log(`Server running at http://localhost:${port}`);
     });
