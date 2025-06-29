@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./src/routes/authRoutes.js";
-import dashboardRoutes from "./src/routes/dashboard.js";
+import dashboardRoutes from "./src/routes/protectedRoutes.js";
 
 dotenv.config();
 
