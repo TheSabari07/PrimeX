@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./src/routes/authRoutes.js";
+import dashboardRoutes from "./src/routes/dashboard.js";
 
 dotenv.config();
 
@@ -14,12 +15,16 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-
-
 app.use(express.json());
 
+// api
 app.use("/api/auth", authRoutes);
+app.use("/api", dashboardRoutes);
 
+
+
+
+// mongo db connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to MongoDB");
