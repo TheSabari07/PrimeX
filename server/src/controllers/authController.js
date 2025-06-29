@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
-  console.log("Received body:", req.body);  // testing
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
