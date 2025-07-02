@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaSignInAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email,    setEmail] = useState("");
@@ -7,20 +8,25 @@ const Login = () => {
   const [error,    setError] = useState("");
   const [success,  setSuccess] = useState("");
 
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
     setSuccess("");
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch("http://localhost:5002/api/auth/login", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
       if (response.ok) {
+        localStorage.setItem("token", data.token);
         setSuccess("Login successful! Redirecting...");
-        // TODO  save the JWT to localStorage and navigate
+        
+        setTimeout( () => {navigate("/dashboard")},1500);
+        
       } else {
         setError(data.message || "Invalid email or password");
       }
