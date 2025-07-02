@@ -26,7 +26,7 @@ const Login = () => {
         setSuccess("Login successful! Redirecting...");
         
         setTimeout( () => {navigate("/dashboard")},1500);
-        
+
       } else {
         setError(data.message || "Invalid email or password");
       }
@@ -81,3 +81,4 @@ const Login = () => {
 };
 
 export default Login;
+ 
