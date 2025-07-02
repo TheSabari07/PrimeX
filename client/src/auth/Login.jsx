@@ -23,9 +23,9 @@ const Login = () => {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem("token", data.token);
+        login(data.token);
         setSuccess("Login successful! Redirecting...");
-        
-        setTimeout( () => {navigate("/dashboard")},1500);
+        setTimeout( () => {navigate("/dashboard")},1000);
 
       } else {
         setError(data.message || "Invalid email or password");
