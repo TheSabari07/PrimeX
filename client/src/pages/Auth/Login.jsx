@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaSignInAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
   const [email,    setEmail] = useState("");
@@ -9,6 +10,7 @@ const Login = () => {
   const [success,  setSuccess] = useState("");
 
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
