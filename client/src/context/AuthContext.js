@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 export const AuthContext = createContext();
 
@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
       return jwtDecode(token);
     } catch (err) {
       console.error("Invalid token", err);
-      return null;
+      return null; 
     }
   };
 
