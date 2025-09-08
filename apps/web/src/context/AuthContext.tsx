@@ -22,7 +22,7 @@ type AuthAction =
 
 interface AuthContextType {
   state: AuthState;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string) => Promise<void>;
   logout: () => void;
   setLoading: (loading: boolean) => void;
 }
@@ -80,7 +80,7 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  const login = async (email: string, password: string): Promise<void> => {
+  const login = async (email: string): Promise<void> => {
     dispatch({ type: 'LOGIN_START' });
     
     try {
